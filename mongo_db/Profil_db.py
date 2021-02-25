@@ -1,7 +1,7 @@
 import pymongo
 
 # Create the client
-client = pymongo.MongoClient('127.0.0.1', 27017)
+client = pymongo.MongoClient('127.0.0.1', 8000)
 
 # Connect to our database
 db = client['ProfileDB']
