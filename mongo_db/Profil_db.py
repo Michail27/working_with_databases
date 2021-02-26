@@ -13,7 +13,7 @@ data = {
     "lastname": "Petr",
     "age": 20
 }
-# result = courses.insert_one(data)
+
 
 def insert_one_document(collection, data):
     """ Function to insert a document into a collection and
@@ -28,6 +28,7 @@ data1 = [{
     {"lastname": "Petr",
     "age": 39}]
 
+
 def insert_several_document(collection, data):
     """ Function to insert a document into a collection and
     return the document's id.
@@ -35,7 +36,7 @@ def insert_several_document(collection, data):
     return collection.insert_many(data).inserted_id
 
 
-def get_document(collection, elements, multiple=False):
+def read_document(collection, elements, multiple=False):
     """ Function to retrieve single or multiple documents from a provided
     Collection using a dictionary containing a document's elements.
     """
@@ -57,15 +58,26 @@ def delete_document(collection, query):
     """
     collection.delete_one(query)
 
+# Simpl
+# db.users.find().limit(3).skip(3)
+# db.users.find().sort({name: 1})
+#  db.users.find ({name: "Tom"}, {languages: {$slice : [-1, 1]}});
+#  db.users.find({name: "Tom"}).count()
+# db.users.distinct("name") # Уникальные имена
+# db.users.find ({age: {$lt : 30}}) # <30
+# db.users.find ({age: {$gt : 30}}) # >30
+# db.users.find ({$or : [{name: "Tom"}, {age: 22}]})
+
 
 if __name__ == "__main__":
-    # insert_one_document(courses, data)
+    rez = insert_one_document(courses, data)
+    print(rez)
 
     # insert_several_document(courses, data1)
 
     # print(courses.count_documents({}))  # количество записей
 
-    # id_ = get_document(courses, {'lastname': 'Ilya'})
+    # id_ = read_document(courses, {'lastname': 'Ilya'})
 
     # new_show = {
     #     "name": "FRIENDS",
@@ -73,12 +85,12 @@ if __name__ == "__main__":
     # }
     # id_ = insert_one_document(courses, new_show)
     # update_document(courses, {'_id': id_}, {'name': 'F.R.I.E.N.D.S'})
-    # result = get_document(courses, {'_id': id_})
+    # result = read_document(courses, {'_id': id_})
     # print(result)
 
-    delete_document(courses, {'name': 'F.R.I.E.N.D.S'})
-    result = get_document(courses, {'name': 'F.R.I.E.N.D.S'})
-    print(result)
+    # delete_document(courses, {'name': 'F.R.I.E.N.D.S'})
+    # result = read_document(courses, {'name': 'F.R.I.E.N.D.S'})
+    # print(result)
 
 
 
